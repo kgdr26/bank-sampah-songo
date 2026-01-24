@@ -54,6 +54,7 @@ class MHistorysetor extends Model
                 DB::raw('SUM(ts.tts_berat_sampah * ts.tts_harga_perberat) AS total_harga'),
                 'ts.tts_created_by as teller_id',
             ])
+            ->where('ts.tts_status', '>', 0)
             ->groupBy(
                 'a.msa_id',
                 'a.msa_name',
@@ -198,6 +199,7 @@ class MHistorysetor extends Model
                     DB::raw("COALESCE(MAX(st.mss_name), '-') AS status_name"),
                     DB::raw("COALESCE(MAX(st.mss_class), 'bg-secondary') AS status_class"),
                 ])
+                ->where('ts.tts_status', '>', 0)
                 ->where('ts.tts_msa_id', $msa_id)
                 ->where('ts.tts_setor_date', $tts_setor_date)
                 ->groupBy(
@@ -276,6 +278,7 @@ class MHistorysetor extends Model
                 DB::raw('SUM(ts.tts_berat_sampah) AS total_berat'),
                 DB::raw('SUM(ts.tts_berat_sampah * ts.tts_harga_perberat) AS total_harga'),
             ])
+            ->where('ts.tts_status', '>', 0)
             ->where('ts.tts_msa_id', $msa_id)
             ->where('ts.tts_setor_date', $tts_setor_date)
             ->groupBy(
