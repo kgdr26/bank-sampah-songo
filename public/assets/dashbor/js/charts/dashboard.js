@@ -229,7 +229,7 @@ if ($('.d-slider1').length > 0) {
             991: { slidesPerView: 3 },
             1400: { slidesPerView: 3 },
             1500: { slidesPerView: 4 },
-            1920: { slidesPerView: 6 },
+            1920: { slidesPerView: 5 },
             2040: { slidesPerView: 7 },
             2440: { slidesPerView: 8 }
         },

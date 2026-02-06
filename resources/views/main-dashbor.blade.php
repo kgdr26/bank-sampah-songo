@@ -39,11 +39,42 @@
     <body class="">
         <!-- loader Start -->
         <div id="loading">
-            <div class="loader simple-loader">
-                <div class="loader-body">
+            <div class="loader-overlay">
+                <div class="flex flex-col items-center">
+                    
+                    <div class="flex">
+                        
+                        <div class="loader loader-circle">
+                            <svg viewBox="0 0 80 80">
+                                <circle cx="40" cy="40" r="32"></circle>
+                            </svg>
+                        </div>
+
+                        <div class="loader loader-triangle">
+                            <svg viewBox="0 0 86 80">
+                                <polygon points="43 8 79 72 7 72"></polygon>
+                            </svg>
+                        </div>
+
+                        <div class="loader loader-rect">
+                            <svg viewBox="0 0 80 80">
+                                <rect x="8" y="8" width="64" height="64"></rect>
+                            </svg>
+                        </div>
+                    </div>
+
+                    <div class="loading-text-container">
+                        PROCESSING
+                        <div class="loading-dot"></div>
+                        <div class="loading-dot"></div>
+                        <div class="loading-dot"></div>
+                    </div>
                 </div>
             </div>
         </div>
+
+        
+        
         <!-- loader END -->
 
         <aside class="sidebar sidebar-default sidebar-white sidebar-base navs-rounded-all ">
@@ -425,7 +456,6 @@
         <script src="{{ asset('assets/dashbor/js/hope-ui.js') }}" defer></script>
 
         <!-- Include Main JS start-->
-        <script src="{{asset('assets/main-js/main.js')}}"></script>
         @foreach ($js as $src)
             <script src="{{ $src }}"></script>
         @endforeach

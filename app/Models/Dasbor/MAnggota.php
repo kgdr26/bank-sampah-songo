@@ -45,14 +45,15 @@ class MAnggota extends Model
             ->leftJoin('trx_transaksi_setor as ts', function ($join) {
                 $join->on('ts.tts_msa_id', '=', 'a.msa_id')
                     ->where('ts.tts_status', '>', 0);
-            });
+            })
+            ->where('msa_status', 1);
 
         /**
          * =============================
          * TOTAL DATA (SEMUA ANGGOTA)
          * =============================
          */
-        $recordsTotal = DB::table('mst_anggota')->count();
+        $recordsTotal = $baseQuery->count();
 
         /**
          * =============================

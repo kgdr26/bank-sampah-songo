@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Dasbor;
 
+use App\Models\Dasbor\MDasbor as MDasbor;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;

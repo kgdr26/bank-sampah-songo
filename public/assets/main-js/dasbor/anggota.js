@@ -155,8 +155,6 @@
        
     });
 
-    
-
     $('button[data-name="add_anggota"]').on('click', function (e) {
         e.preventDefault();
 
@@ -208,7 +206,5 @@
             });
         });
     });
-
-
 
 })(jQuery);

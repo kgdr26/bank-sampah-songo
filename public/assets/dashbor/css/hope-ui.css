@@ -94,6 +94,14 @@ hr {
   --bs-link-hover-color: #2e46ba;
   --bs-code-color: #d63384;
   --bs-highlight-bg: #fcf8e3;
+  --color-purple: #8a2be2; 
+  --color-pink: #ff69b4;   
+  --color-cyan: #00ffff;   
+  --loader-path: #e5e7eb;
+  --loader-duration: 3s;
+  --color-duration-circle: 4s;
+  --color-duration-rect: 6s;
+  --color-duration-triangle: 8s;
 }
 
 *,
@@ -16878,7 +16886,7 @@ thead, tbody, tfoot, tr, td, th {
   z-index: 1250;
 }
 .loader.simple-loader .loader-body {
-  background: url(../images/loader.gif) no-repeat scroll center center;
+  background: url('../../logo/logo-1.png') no-repeat scroll center center;
   -webkit-background-size: 20% 20%;
           background-size: 20%;
   width: 100%;
@@ -25434,4 +25442,138 @@ pre[class*=language-] {
     max-width: 100%;
     min-width: 260px;
   }
+}
+
+/* Keyframes and loader base styles */
+@keyframes color-shift-animation {
+    0% { background: var(--color-purple); box-shadow: 0 0 8px var(--color-purple);}
+    33% { background: var(--color-pink); box-shadow: 0 0 8px var(--color-pink);}
+    66% { background: var(--color-cyan); box-shadow: 0 0 8px var(--color-cyan);}
+    100% { background: var(--color-purple); box-shadow: 0 0 8px var(--color-purple);}
+}
+@keyframes stroke-color-shift-animation {
+    0% { stroke: var(--color-purple);}
+    33% { stroke: var(--color-pink);}
+    66% { stroke: var(--color-cyan);}
+    100% { stroke: var(--color-purple);}
+}
+@keyframes text-dot-pulse {
+    0%, 100% { transform: translateY(0); opacity: 0.5;}
+    50% { transform: translateY(-8px); opacity: 1;}
+}
+@keyframes pathTriangle {
+    33% { stroke-dashoffset: 74;}
+    66% { stroke-dashoffset: 147;}
+    100% { stroke-dashoffset: 221;}
+}
+@keyframes dotTriangle {
+    33% { transform: translate(0, 0);}
+    66% { transform: translate(10px, -18px);}
+    100% { transform: translate(-10px, -18px);}
+}
+@keyframes pathRect {
+    25% { stroke-dashoffset: 64;}
+    50% { stroke-dashoffset: 128;}
+    75% { stroke-dashoffset: 192;}
+    100% { stroke-dashoffset: 256;}
+}
+@keyframes dotRect {
+    25% { transform: translate(0, 0);}
+    50% { transform: translate(18px, -18px);}
+    75% { transform: translate(0, -36px);}
+    100% { transform: translate(-18px, -18px);}
+}
+@keyframes pathCircle {
+    25% { stroke-dashoffset: 125;}
+    50% { stroke-dashoffset: 175;}
+    75% { stroke-dashoffset: 225;}
+    100% { stroke-dashoffset: 275;}
+}
+
+.loader-overlay {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    display: flex; justify-content: center; align-items: center;
+    background: rgba(255, 255, 255, 0.95);
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+    z-index: 10;
+    border-radius: 12px;
+}
+.loader {
+    width: 44px; height: 44px; position: relative; display: inline-block; margin: 0 4px;
+}
+.loader::before {
+    content: '';
+    width: 6px; height: 6px; border-radius: 50%;
+    position: absolute; display: block; z-index: 2;
+    top: 37px; left: 19px; transform: translate(-18px, -18px);
+}
+.loader svg { display: block; width: 100%; height: 100%; }
+.loader svg rect,
+.loader svg polygon,
+.loader svg circle {
+    fill: none; stroke-width: 6px; stroke-linejoin: round; stroke-linecap: round; stroke: var(--loader-path);
+}
+.loading-text-container {
+    display: flex; align-items: center; margin-top: 30px;
+    color: #374151; font-size: 1.25rem; font-weight: 300; letter-spacing: 0.2em; text-transform: uppercase;
+}
+.loading-dot {
+    width: 6px; height: 6px; border-radius: 50%; margin: 0 4px;
+    animation-name: color-shift-animation, text-dot-pulse;
+    animation-duration: 6s, 1.2s;
+    animation-timing-function: linear, ease-in-out;
+    animation-iteration-count: infinite, infinite;
+}
+.loading-dot:nth-child(1) { animation-delay: 0s, 0s; }
+.loading-dot:nth-child(2) { animation-delay: 0s, 0.2s; }
+.loading-dot:nth-child(3) { animation-delay: 0s, 0.4s; }
+
+/* Circle Loader */
+.loader-circle::before {
+    animation-name: dotRect, color-shift-animation;
+    animation-duration: var(--loader-duration), var(--color-duration-circle);
+    animation-timing-function: cubic-bezier(0.785, 0.135, 0.15, 0.86), linear;
+    animation-iteration-count: infinite, infinite;
+}
+.loader-circle svg circle {
+    stroke-dasharray: 150 50 150 50;
+    stroke-dashoffset: 75;
+    animation-name: pathCircle, stroke-color-shift-animation;
+    animation-duration: var(--loader-duration), var(--color-duration-circle);
+    animation-timing-function: cubic-bezier(0.785, 0.135, 0.15, 0.86), linear;
+    animation-iteration-count: infinite, infinite;
+}
+/* Rectangle Loader */
+.loader-rect::before {
+    animation-name: dotRect, color-shift-animation;
+    animation-duration: var(--loader-duration), var(--color-duration-rect);
+    animation-timing-function: cubic-bezier(0.785, 0.135, 0.15, 0.86), linear;
+    animation-iteration-count: infinite, infinite;
+}
+.loader-rect svg rect {
+    stroke-dasharray: 192 64 192 64;
+    stroke-dashoffset: 0;
+    animation-name: pathRect, stroke-color-shift-animation;
+    animation-duration: var(--loader-duration), var(--color-duration-rect);
+    animation-timing-function: cubic-bezier(0.785, 0.135, 0.15, 0.86), linear;
+    animation-iteration-count: infinite, infinite;
+}
+/* Triangle Loader */
+.loader-triangle { width: 48px; }
+.loader-triangle::before {
+    left: 21px; transform: translate(-10px, -18px);
+    animation-name: dotTriangle, color-shift-animation;
+    animation-duration: var(--loader-duration), var(--color-duration-triangle);
+    animation-timing-function: cubic-bezier(0.785, 0.135, 0.15, 0.86), linear;
+    animation-iteration-count: infinite, infinite;
+}
+.loader-triangle svg polygon {
+    stroke-dasharray: 145 76 145 76;
+    stroke-dashoffset: 0;
+    animation-name: pathTriangle, stroke-color-shift-animation;
+    animation-duration: var(--loader-duration), var(--color-duration-triangle);
+    animation-timing-function: cubic-bezier(0.785, 0.135, 0.15, 0.86), linear;
+    animation-iteration-count: infinite, infinite;
 }
