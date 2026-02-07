@@ -36,6 +36,8 @@ class Dasbor extends Controller
 
         if($typeData == 'chartBeratSetorDanJual'){
             $result = MDasbor::getchartBeratSetorDanJual($request);
+        }elseif($typeData == 'chartSaldoMasukKeluar'){
+            $result = MDasbor::getChartSaldoMasukKeluar($request);
         }else{
             $result = [];
         }

@@ -1,118 +1,74 @@
 (function (jQuery) {
   "use strict";
-if (document.querySelectorAll('#myChart').length) {
-  const options = {
-    series: [55, 75],
-    chart: {
-    height: 230,
-    type: 'radialBar',
-  },
-  colors: ["#4bc7d2", "#3a57e8"],
-  plotOptions: {
-    radialBar: {
-      hollow: {
-          margin: 10,
-          size: "50%",
-      },
-      track: {
-          margin: 10,
-          strokeWidth: '50%',
-      },
-      dataLabels: {
-          show: false,
-      }
-    }
-  },
-  labels: ['Apples', 'Oranges'],
-  };
-  if(ApexCharts !== undefined) {
-    const chart = new ApexCharts(document.querySelector("#myChart"), options);
-    chart.render();
+
+if ($('#d-activity').length) {
+
+    let chartsaldo = null;
+
+    $.ajax({
+        url: "/dasbor/list-data",
+        type: "POST",
+        dataType: "json",
+        data: {
+            type_data: "chartSaldoMasukKeluar"
+        },
+        success: function(res) {
+
+            const labelsFormattedsaldo = res.labels.map(tgl => formatTanggal(tgl));
+
+            const optionssaldo = {
+                series: [{
+                    name: 'Saldo Masuk',
+                    data: res.masuk
+                }, {
+                    name: 'Saldo Keluar',
+                    data: res.keluar
+                }],
+                chart: {
+                    type: 'bar',
+                    height: 230,
+                    toolbar: { show: false }
+                },
+                colors: ["#3a57e8", "#4bc7d2"],
+                plotOptions: {
+                    bar: {
+                        columnWidth: '28%',
+                        borderRadius: 5
+                    }
+                },
+                dataLabels: { enabled: false },
+                xaxis: {
+                    categories: labelsFormattedsaldo,
+                    labels: { rotate: -45 }
+                },
+                yaxis: {
+                    labels: {
+                        formatter: val => 'Rp ' + val.toLocaleString('id-ID')
+                    }
+                },
+                tooltip: {
+                    enabled: true,
+                },
+            };
+
+            chartsaldo = new ApexCharts(
+                document.querySelector("#d-activity"),
+                optionssaldo
+            );
+            chartsaldo.render();
+        }
+    });
+
+    // ColorChange JALAN SETELAH chart ADA
     document.addEventListener('ColorChange', (e) => {
-        const newOpt = {colors: [e.detail.detail2, e.detail.detail1],}
-        chart.updateOptions(newOpt)
-       
-    })
-  }
+        if (chartsaldo) {
+            chartsaldo.updateOptions({
+                colors: [e.detail.detail1, e.detail.detail2]
+            });
+        }
+    });
 }
-if (document.querySelectorAll('#d-activity').length) {
-    const options = {
-      series: [{
-        name: 'Successful deals',
-        data: [30, 50, 35, 60, 40, 60, 60, 30, 50, 35,]
-      }, {
-        name: 'Failed deals',
-        data: [40, 50, 55, 50, 30, 80, 30, 40, 50, 55]
-      }],
-      chart: {
-        type: 'bar',
-        height: 230,
-        stacked: true,
-        toolbar: {
-            show:false
-          }
-      },
-      colors: ["#3a57e8", "#4bc7d2"],
-      plotOptions: {
-        bar: {
-          horizontal: false,
-          columnWidth: '28%',
-          endingShape: 'rounded',
-          borderRadius: 5,
-        },
-      },
-      legend: {
-        show: false
-      },
-      dataLabels: {
-        enabled: false
-      },
-      stroke: {
-        show: true,
-        width: 2,
-        colors: ['transparent']
-      },
-      xaxis: {
-        categories: ['S', 'M', 'T', 'W', 'T', 'F', 'S', 'M', 'T', 'W'],
-        labels: {
-          minHeight:20,
-          maxHeight:20,
-          style: {
-            colors: "#8A92A6",
-          },
-        }
-      },
-      yaxis: {
-        title: {
-          text: ''
-        },
-        labels: {
-            minWidth: 19,
-            maxWidth: 19,
-            style: {
-              colors: "#8A92A6",
-            },
-        }
-      },
-      fill: {
-        opacity: 1
-      },
-      tooltip: {
-        y: {
-          formatter: function (val) {
-            return "$ " + val + " thousands"
-          }
-        }
-      }
-    };
-  
-    const chart = new ApexCharts(document.querySelector("#d-activity"), options);
-    chart.render();
-    document.addEventListener('ColorChange', (e) => {
-    const newOpt = {colors: [e.detail.detail1, e.detail.detail2],}
-    chart.updateOptions(newOpt)
-    })
-  }
+
 
 if ($('#d-main').length) {
 
@@ -125,7 +81,7 @@ if ($('#d-main').length) {
         },
         success: function (res) {
 
-            console.log(res);
+            // console.log(res);
 
             const options = {
                 series: [{
@@ -148,7 +104,7 @@ if ($('#d-main').length) {
                 },
                 colors: ["#3a57e8", "#4bc7d2"],
                 dataLabels: {
-                    enabled: false
+                    enabled: true
                 },
                 stroke: {
                     curve: 'smooth',
@@ -167,7 +123,7 @@ if ($('#d-main').length) {
                     },
                 },
                 legend: {
-                    show: false,
+                    show: true,
                 },
                 xaxis: {
                     labels: {
@@ -181,7 +137,7 @@ if ($('#d-main').length) {
                     lines: {
                         show: false
                     },
-                    categories: res.categories // 🔥 dari AJAX
+                    categories: res.categories // dari AJAX
                 },
                 grid: {
                     show: false,
@@ -288,6 +244,20 @@ if ($('.d-slider1').length > 0) {
         }, 500);
       }
     })
+}
+
+function formatTanggal(dateStr) {
+    const hari = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
+    const bulan = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+
+    const d = new Date(dateStr);
+
+    const ddd = hari[d.getDay()];
+    const dd  = String(d.getDate()).padStart(2, '0');
+    const MM  = bulan[d.getMonth()];
+    const yyyy = d.getFullYear();
+
+    return `${ddd}, ${dd} ${MM} ${yyyy}`;
 }
 
 })(jQuery)

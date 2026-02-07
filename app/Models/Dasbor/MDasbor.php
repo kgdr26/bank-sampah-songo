@@ -55,6 +55,26 @@ class MDasbor extends Model
                                 ->where('t0.tts_status', '>', 0)
                                 ->value('total_kg');
 
+        // Query History Pengumpulan
+        $historypengumpulan = DB::table('trx_transaksi_setor as t0')
+                                ->join('mst_categori_sampah as t1', 't1.mcs_id', '=', 't0.tts_mcs_id')
+                                ->selectRaw("
+                                    t0.tts_setor_date as tanggal,
+                                    ROUND(SUM(
+                                        CASE
+                                            WHEN t1.mcs_satuan = 'Kg'
+                                                THEN t0.tts_berat_sampah
+                                            WHEN t1.mcs_satuan = 'L'
+                                                THEN t0.tts_berat_sampah * 0.9
+                                            ELSE 0
+                                        END
+                                    ), 2) as total_kg
+                                ")
+                                ->where('t0.tts_status', '>', 0)
+                                ->groupBy('t0.tts_setor_date')
+                                ->orderByDesc('t0.tts_setor_date')
+                                ->get();
+
         // Query sampah terjual
         $sampahterjual     = DB::table('trx_penjualan_sampah as t0')
                                 ->join('mst_categori_sampah as t1', 't1.mcs_id', '=', 't0.tps_mcs_id')
@@ -134,6 +154,63 @@ class MDasbor extends Model
                                 ->limit(1)
                                 ->first();
 
+        // Query top 5 anggota
+        // SUBQUERY SETOR (TOTAL BERAT + NILAI)
+        $subSetor = DB::table('trx_transaksi_setor as s')
+            ->join('mst_categori_sampah as c', 'c.mcs_id', '=', 's.tts_mcs_id')
+            ->selectRaw('
+                s.tts_msa_id,
+                SUM(
+                    CASE
+                        WHEN c.mcs_satuan = "Kg"
+                            THEN s.tts_berat_sampah
+                        WHEN c.mcs_satuan = "L"
+                            THEN s.tts_berat_sampah * 0.9
+                        ELSE 0
+                    END
+                ) AS total_berat_kg,
+                SUM(s.tts_harga_perberat * s.tts_berat_sampah) AS total_nilai
+            ')
+            ->where('s.tts_status', '>', 0)
+            ->groupBy('s.tts_msa_id');
+
+        // SUBQUERY TARIK
+        $subTarik = DB::table('trx_transaksi_tarik')
+            ->selectRaw('
+                ttt_msa_id,
+                SUM(ttt_nominal_tarik) AS total_tarik
+            ')
+            ->groupBy('ttt_msa_id');
+
+        // QUERY UTAMA (ANGGOTA)
+        $toplimaanggota = DB::table('mst_anggota as a')
+            ->leftJoinSub($subSetor, 'setor', function ($join) {
+                $join->on('setor.tts_msa_id', '=', 'a.msa_id');
+            })
+            ->leftJoinSub($subTarik, 'tarik', function ($join) {
+                $join->on('tarik.ttt_msa_id', '=', 'a.msa_id');
+            })
+            ->select(
+                'a.msa_id',
+                'a.msa_user_id',
+                'a.msa_norek',
+                'a.msa_name',
+                'a.msa_no_tlp',
+                'a.msa_alamat',
+                'a.msa_status',
+                'a.msa_created_date',
+
+                DB::raw('COALESCE(setor.total_berat_kg, 0) AS total_berat_kg'),
+                DB::raw('
+                    COALESCE(setor.total_nilai, 0)
+                    -
+                    COALESCE(tarik.total_tarik, 0)
+                    AS saldo
+                ')
+            )
+            ->orderByDesc('saldo')
+            ->limit(5)
+            ->get();
 
         $arr = [
             'total_anggota'     => $anggota->count(),
@@ -144,7 +221,9 @@ class MDasbor extends Model
             'sampah_terkumpul'  => $sampahterkumpul,
             'sampah_terjual'    => $sampahterjual,
             'sampah_tersimpan'  => $sampahtersimpan,
-            'reward'            => (array) $reward
+            'reward'            => (array) $reward,
+            'history_setor'     => $historypengumpulan,
+            'top_lima_anggota'  => $toplimaanggota
         ];
 
         return $arr;
@@ -229,6 +308,34 @@ class MDasbor extends Model
             'categories' => $categories,
             'setor'      => $setor,
             'jual'       => $jual,
+        ];
+
+        return $arr;
+    }
+
+    //Function untuk chart history saldo
+    public static function getChartSaldoMasukKeluar($request)
+    {
+        // saldo masuk
+        $masuk = DB::table('trx_penjualan_sampah')
+            ->selectRaw('DATE(tps_date_setor) as tanggal, 
+                        SUM(tps_total_berat * tps_harga_perberat) as total')
+            ->groupBy('tanggal')
+            ->orderBy('tanggal')
+            ->get();
+
+        // saldo keluar
+        $keluar = DB::table('trx_transaksi_tarik')
+            ->selectRaw('DATE(ttt_created_date) as tanggal, 
+                        SUM(ttt_nominal_tarik) as total')
+            ->groupBy('tanggal')
+            ->orderBy('tanggal')
+            ->get();
+
+        $arr =  [
+            'labels' => $masuk->pluck('tanggal'),
+            'masuk'  => $masuk->pluck('total'),
+            'keluar' => $keluar->pluck('total'),
         ];
 
         return $arr;

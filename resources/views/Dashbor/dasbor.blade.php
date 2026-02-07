@@ -142,30 +142,6 @@
                                 <div class="header-title">
                                     <h4 class="card-title">Chart Pengumpulan Dan Penjualan</h4>
                                 </div>
-                                <div class="d-flex align-items-center align-self-center">
-                                    <div class="d-flex align-items-center text-primary">
-                                        <svg class="icon-12" xmlns="http://www.w3.org/2000/svg" width="12"
-                                            viewBox="0 0 24 24" fill="currentColor">
-                                            <g>
-                                                <circle cx="12" cy="12" r="8" fill="currentColor"></circle>
-                                            </g>
-                                        </svg>
-                                        <div class="ms-2">
-                                            <span class="text-gray">Total Terkumpul @Kg</span>
-                                        </div>
-                                    </div>
-                                    <div class="d-flex align-items-center ms-3 text-info">
-                                        <svg class="icon-12" xmlns="http://www.w3.org/2000/svg" width="12"
-                                            viewBox="0 0 24 24" fill="currentColor">
-                                            <g>
-                                                <circle cx="12" cy="12" r="8" fill="currentColor"></circle>
-                                            </g>
-                                        </svg>
-                                        <div class="ms-2">
-                                            <span class="text-gray">Total Terjual @Kg</span>
-                                        </div>
-                                    </div>
-                                </div>
                             </div>
                             <div class="card-body">
                                 <div id="d-main" class="d-main"></div>
@@ -177,20 +153,9 @@
                         <div class="card" data-aos="fade-up" data-aos-delay="1000">
                             <div class="flex-wrap card-header d-flex justify-content-between">
                                 <div class="header-title">
-                                    <h4 class="card-title">Conversions</h4>
+                                    <h4 class="card-title">Saldo</h4>
                                 </div>
-                                <div class="dropdown">
-                                    <a href="#" class="text-gray dropdown-toggle" id="dropdownMenuButton3"
-                                        data-bs-toggle="dropdown" aria-expanded="false">
-                                        This Week
-                                    </a>
-                                    <ul class="dropdown-menu dropdown-menu-end"
-                                        aria-labelledby="dropdownMenuButton3">
-                                        <li><a class="dropdown-item" href="#">This Week</a></li>
-                                        <li><a class="dropdown-item" href="#">This Month</a></li>
-                                        <li><a class="dropdown-item" href="#">This Year</a></li>
-                                    </ul>
-                                </div>
+                                
                             </div>
                             <div class="card-body">
                                 <div id="d-activity" class="d-activity"></div>
@@ -209,179 +174,31 @@
                                     <table id="basic-table" class="table mb-0 table-striped" role="grid">
                                         <thead>
                                             <tr>
-                                                <th>COMPANIES</th>
-                                                <th>CONTACTS</th>
-                                                <th>ORDER</th>
-                                                <th>COMPLETION</th>
+                                                <th>NO</th>
+                                                <th>NAMA ANGGOTA</th>
+                                                <th>TOTAL KG</th>
+                                                <th>SALDO</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <td>
-                                                    <div class="d-flex align-items-center">
-                                                        <img class="rounded bg-soft-primary img-fluid avatar-40 me-3"
-                                                            src="../assets/images/shapes/01.png" alt="profile">
-                                                        <h6>Addidis Sportwear</h6>
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <div class="iq-media-group iq-media-group-1">
-                                                        <a href="#" class="iq-media-1">
-                                                            <div class="icon iq-icon-box-3 rounded-pill">SP</div>
-                                                        </a>
-                                                        <a href="#" class="iq-media-1">
-                                                            <div class="icon iq-icon-box-3 rounded-pill">PP</div>
-                                                        </a>
-                                                        <a href="#" class="iq-media-1">
-                                                            <div class="icon iq-icon-box-3 rounded-pill">MM</div>
-                                                        </a>
-                                                    </div>
-                                                </td>
-                                                <td>$14,000</td>
-                                                <td>
-                                                    <div class="mb-2 d-flex align-items-center">
-                                                        <h6>60%</h6>
-                                                    </div>
-                                                    <div class="shadow-none progress bg-soft-primary w-100"
-                                                        style="height: 4px">
-                                                        <div class="progress-bar bg-primary"
-                                                            data-toggle="progress-bar" role="progressbar"
-                                                            aria-valuenow="60" aria-valuemin="0"
-                                                            aria-valuemax="100"></div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <div class="d-flex align-items-center">
-                                                        <img class="rounded bg-soft-primary img-fluid avatar-40 me-3"
-                                                            src="../assets/images/shapes/05.png" alt="profile">
-                                                        <h6>Netflixer Platforms</h6>
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <div class="iq-media-group iq-media-group-1">
-                                                        <a href="#" class="iq-media-1">
-                                                            <div class="icon iq-icon-box-3 rounded-pill">SP</div>
-                                                        </a>
-                                                        <a href="#" class="iq-media-1">
-                                                            <div class="icon iq-icon-box-3 rounded-pill">PP</div>
-                                                        </a>
-                                                    </div>
-                                                </td>
-                                                <td>$30,000</td>
-                                                <td>
-                                                    <div class="mb-2 d-flex align-items-center">
-                                                        <h6>25%</h6>
-                                                    </div>
-                                                    <div class="shadow-none progress bg-soft-primary w-100"
-                                                        style="height: 4px">
-                                                        <div class="progress-bar bg-primary"
-                                                            data-toggle="progress-bar" role="progressbar"
-                                                            aria-valuenow="25" aria-valuemin="0"
-                                                            aria-valuemax="100"></div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <div class="d-flex align-items-center">
-                                                        <img class="rounded bg-soft-primary img-fluid avatar-40 me-3"
-                                                            src="../assets/images/shapes/02.png" alt="profile">
-                                                        <h6>Shopifi Stores</h6>
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <div class="iq-media-group iq-media-group-1">
-                                                        <a href="#" class="iq-media-1">
-                                                            <div class="icon iq-icon-box-3 rounded-pill">PP</div>
-                                                        </a>
-                                                        <a href="#" class="iq-media-1">
-                                                            <div class="icon iq-icon-box-3 rounded-pill">TP</div>
-                                                        </a>
-                                                    </div>
-                                                </td>
-                                                <td>$8,500</td>
-                                                <td>
-                                                    <div class="mb-2 d-flex align-items-center">
-                                                        <h6>100%</h6>
-                                                    </div>
-                                                    <div class="shadow-none progress bg-soft-success w-100"
-                                                        style="height: 4px">
-                                                        <div class="progress-bar bg-success"
-                                                            data-toggle="progress-bar" role="progressbar"
-                                                            aria-valuenow="100" aria-valuemin="0"
-                                                            aria-valuemax="100"></div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <div class="d-flex align-items-center">
-                                                        <img class="rounded bg-soft-primary img-fluid avatar-40 me-3"
-                                                            src="../assets/images/shapes/03.png" alt="profile">
-                                                        <h6>Bootstrap Technologies</h6>
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <div class="iq-media-group iq-media-group-1">
-                                                        <a href="#" class="iq-media-1">
-                                                            <div class="icon iq-icon-box-3 rounded-pill">SP</div>
-                                                        </a>
-                                                        <a href="#" class="iq-media-1">
-                                                            <div class="icon iq-icon-box-3 rounded-pill">PP</div>
-                                                        </a>
-                                                        <a href="#" class="iq-media-1">
-                                                            <div class="icon iq-icon-box-3 rounded-pill">MM</div>
-                                                        </a>
-                                                        <a href="#" class="iq-media-1">
-                                                            <div class="icon iq-icon-box-3 rounded-pill">TP</div>
-                                                        </a>
-                                                    </div>
-                                                </td>
-                                                <td>$20,500</td>
-                                                <td>
-                                                    <div class="mb-2 d-flex align-items-center">
-                                                        <h6>100%</h6>
-                                                    </div>
-                                                    <div class="shadow-none progress bg-soft-success w-100"
-                                                        style="height: 4px">
-                                                        <div class="progress-bar bg-success"
-                                                            data-toggle="progress-bar" role="progressbar"
-                                                            aria-valuenow="100" aria-valuemin="0"
-                                                            aria-valuemax="100"></div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <div class="d-flex align-items-center">
-                                                        <img class="rounded bg-soft-primary img-fluid avatar-40 me-3"
-                                                            src="../assets/images/shapes/04.png" alt="profile">
-                                                        <h6>Community First</h6>
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <div class="iq-media-group iq-media-group-1">
-                                                        <a href="#" class="iq-media-1">
-                                                            <div class="icon iq-icon-box-3 rounded-pill">MM</div>
-                                                        </a>
-                                                    </div>
-                                                </td>
-                                                <td>$9,800</td>
-                                                <td>
-                                                    <div class="mb-2 d-flex align-items-center">
-                                                        <h6>75%</h6>
-                                                    </div>
-                                                    <div class="shadow-none progress bg-soft-primary w-100"
-                                                        style="height: 4px">
-                                                        <div class="progress-bar bg-primary"
-                                                            data-toggle="progress-bar" role="progressbar"
-                                                            aria-valuenow="75" aria-valuemin="0"
-                                                            aria-valuemax="100"></div>
-                                                    </div>
-                                                </td>
-                                            </tr>
+                                            @php
+                                                $no = 1;
+                                            @endphp
+                                            @foreach($arrData['top_lima_anggota'] as $key => $val)
+
+                                                <tr>
+                                                    <td>{{ $no++ }}</td>
+                                                    <td>
+                                                        <div class="d-flex align-items-center">
+                                                            <img class="rounded bg-soft-primary img-fluid avatar-40 me-3" src="{{ asset('assets/dashbor') }}/images/avatars/01.png" alt="profile">
+                                                            <h6>{{ $val->msa_name }}</h6>
+                                                        </div>
+                                                    </td>
+                                                    <td>{{ round($val->total_berat_kg,2) }} Kg</td>
+                                                    <td>Rp. {{ rupiah($val->saldo) }}</td>
+                                                </tr>
+
+                                            @endforeach
                                         </tbody>
                                     </table>
                                 </div>
@@ -460,7 +277,7 @@
                                             </div>
                                         </div>
                                         <div class="ms-3">
-                                            <h5>{{ !empty($arrData['reward']) ? round($arrData['reward']['total_berat_kg'],2) : '0 Kg' }}</h5>
+                                            <h5>{{ !empty($arrData['reward']) ? round($arrData['reward']['total_berat_kg'],2).' Kg' : '0 Kg' }}</h5>
                                             <small class="mb-0">Total Berat</small>
                                         </div>
                                     </div>
@@ -481,41 +298,18 @@
                                 </div>
                             </div>
                             <div class="card-body">
-                                <div class="mb-2  d-flex profile-media align-items-top">
-                                    <div class="mt-1 profile-dots-pills border-primary"></div>
-                                    <div class="ms-4">
-                                        <h6 class="mb-1 ">$2400, Purchase</h6>
-                                        <span class="mb-0">11 JUL 8:10 PM</span>
+                                @foreach ($arrData['history_setor'] as $key => $val)
+                                    
+                                    <div class="mb-2  d-flex profile-media align-items-top">
+                                        <div class="mt-1 profile-dots-pills border-primary"></div>
+                                        <div class="ms-4">
+                                            <h6 class="mb-1 ">{{ $val->total_kg }} Kg</h6>
+                                            <span class="mb-0">{{ \Carbon\Carbon::parse($val->tanggal)->translatedFormat('l, d F Y') }}</span>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="mb-2  d-flex profile-media align-items-top">
-                                    <div class="mt-1 profile-dots-pills border-primary"></div>
-                                    <div class="ms-4">
-                                        <h6 class="mb-1 ">New order #8744152</h6>
-                                        <span class="mb-0">11 JUL 11 PM</span>
-                                    </div>
-                                </div>
-                                <div class="mb-2  d-flex profile-media align-items-top">
-                                    <div class="mt-1 profile-dots-pills border-primary"></div>
-                                    <div class="ms-4">
-                                        <h6 class="mb-1 ">Affiliate Payout</h6>
-                                        <span class="mb-0">11 JUL 7:64 PM</span>
-                                    </div>
-                                </div>
-                                <div class="mb-2  d-flex profile-media align-items-top">
-                                    <div class="mt-1 profile-dots-pills border-primary"></div>
-                                    <div class="ms-4">
-                                        <h6 class="mb-1 ">New user added</h6>
-                                        <span class="mb-0">11 JUL 1:21 AM</span>
-                                    </div>
-                                </div>
-                                <div class="mb-1  d-flex profile-media align-items-top">
-                                    <div class="mt-1 profile-dots-pills border-primary"></div>
-                                    <div class="ms-4">
-                                        <h6 class="mb-1 ">Product added</h6>
-                                        <span class="mb-0">11 JUL 4:50 AM</span>
-                                    </div>
-                                </div>
+
+                                @endforeach
+                                
                             </div>
                         </div>
                     </div>
