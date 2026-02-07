@@ -423,7 +423,7 @@
 
         <!-- mapchart Script -->
         <script src="{{ asset('assets/dashbor/js/charts/vectore-chart.js') }}"></script>
-        <script src="{{ asset('assets/dashbor/js/charts/dashboard.js') }}"></script>
+        {{-- <script src="{{ asset('assets/dashbor/js/charts/dashboard.js') }}"></script> --}}
 
         <script>
             $.ajaxSetup({
@@ -454,6 +454,8 @@
 
         <!-- App Script -->
         <script src="{{ asset('assets/dashbor/js/hope-ui.js') }}" defer></script>
+
+        <script src="{{ asset('assets/main-js/dasbor/main.js') }}"></script>
 
         <!-- Include Main JS start-->
         @foreach ($js as $src)

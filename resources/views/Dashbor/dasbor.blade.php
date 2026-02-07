@@ -18,7 +18,7 @@
                                         </div>
                                         <div class="progress-detail">
                                             <p class="mb-2">Total Anggota</p>
-                                            <h4 class="counter">$560K</h4>
+                                            <h4 class="counter">{{ !empty($arrData['total_anggota']) ? $arrData['total_anggota'] : '0' }}</h4>
                                         </div>
                                     </div>
                                 </div>
@@ -33,7 +33,7 @@
                                         </div>
                                         <div class="progress-detail">
                                             <p class="mb-2">Saldo Tersimpan</p>
-                                            <h4 class="counter">$185K</h4>
+                                            <h4 class="counter">{{ !empty($arrData['saldo_tersimpan']) ? rupiah($arrData['saldo_tersimpan']) : 'Rp. 0' }}</h4>
                                         </div>
                                     </div>
                                 </div>
@@ -48,7 +48,7 @@
                                         </div>
                                         <div class="progress-detail">
                                             <p class="mb-2">Saldo Ditarik</p>
-                                            <h4 class="counter">$185K</h4>
+                                            <h4 class="counter">{{ !empty($arrData['saldo_ditarik']) ? rupiah($arrData['saldo_ditarik']) : 'Rp. 0' }}</h4>
                                         </div>
                                     </div>
                                 </div>
@@ -63,7 +63,7 @@
                                         </div>
                                         <div class="progress-detail">
                                             <p class="mb-2">Saldo Anggota</p>
-                                            <h4 class="counter">$375K</h4>
+                                            <h4 class="counter">{{ !empty($arrData['saldo_anggota']) ? rupiah($arrData['saldo_anggota']) : 'Rp. 0' }}</h4>
                                         </div>
                                     </div>
                                 </div>
@@ -78,7 +78,7 @@
                                         </div>
                                         <div class="progress-detail">
                                             <p class="mb-2">Saldo Kartar</p>
-                                            <h4 class="counter">$742K</h4>
+                                            <h4 class="counter">{{ !empty($arrData['saldo_kartar']) ? rupiah($arrData['saldo_kartar']) : 'Rp. 0' }}</h4>
                                         </div>
                                     </div>
                                 </div>
@@ -92,8 +92,8 @@
                                             </svg>
                                         </div>
                                         <div class="progress-detail">
-                                            <p class="mb-2">Total Sampah</p>
-                                            <h4 class="counter">$150K</h4>
+                                            <p class="mb-2">Sampah Terkumpul @Kg</p>
+                                            <h4 class="counter">{{ !empty($arrData['sampah_terkumpul']) ? round($arrData['sampah_terkumpul'], 2).' Kg' : '0 Kg' }}</h4>
                                         </div>
                                     </div>
                                 </div>
@@ -107,8 +107,8 @@
                                             </svg>
                                         </div>
                                         <div class="progress-detail">
-                                            <p class="mb-2">Sampah Terjual</p>
-                                            <h4 class="counter">$4600</h4>
+                                            <p class="mb-2">Sampah Terjual @Kg</p>
+                                            <h4 class="counter">{{ !empty($arrData['sampah_terjual']) ? round($arrData['sampah_terjual'], 2).' Kg' : '0 Kg' }}</h4>
                                         </div>
                                     </div>
                                 </div>
@@ -122,8 +122,8 @@
                                             </svg>
                                         </div>
                                         <div class="progress-detail">
-                                            <p class="mb-2">Sampah Tersimpan</p>
-                                            <h4 class="counter">11.2M</h4>
+                                            <p class="mb-2">Sampah Tersimpan @Kg</p>
+                                            <h4 class="counter">{{ !empty($arrData['sampah_tersimpan']) ? round($arrData['sampah_tersimpan'], 2).' Kg' : '0 Kg' }}</h4>
                                         </div>
                                     </div>
                                 </div>
@@ -136,12 +136,11 @@
             </div>
             <div class="col-md-12 col-lg-8">
                 <div class="row">
-                    <div class="col-md-12">
+                    <div class="col-md-12 col-xl-12">
                         <div class="card" data-aos="fade-up" data-aos-delay="800">
                             <div class="flex-wrap card-header d-flex justify-content-between align-items-center">
                                 <div class="header-title">
-                                    <h4 class="card-title">$855.8K</h4>
-                                    <p class="mb-0">Gross Sales</p>
+                                    <h4 class="card-title">Chart Pengumpulan Dan Penjualan</h4>
                                 </div>
                                 <div class="d-flex align-items-center align-self-center">
                                     <div class="d-flex align-items-center text-primary">
@@ -152,7 +151,7 @@
                                             </g>
                                         </svg>
                                         <div class="ms-2">
-                                            <span class="text-gray">Sales</span>
+                                            <span class="text-gray">Total Terkumpul @Kg</span>
                                         </div>
                                     </div>
                                     <div class="d-flex align-items-center ms-3 text-info">
@@ -163,21 +162,9 @@
                                             </g>
                                         </svg>
                                         <div class="ms-2">
-                                            <span class="text-gray">Cost</span>
+                                            <span class="text-gray">Total Terjual @Kg</span>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="dropdown">
-                                    <a href="#" class="text-gray dropdown-toggle" id="dropdownMenuButton22"
-                                        data-bs-toggle="dropdown" aria-expanded="false">
-                                        This Week
-                                    </a>
-                                    <ul class="dropdown-menu dropdown-menu-end"
-                                        aria-labelledby="dropdownMenuButton22">
-                                        <li><a class="dropdown-item" href="#">This Week</a></li>
-                                        <li><a class="dropdown-item" href="#">This Month</a></li>
-                                        <li><a class="dropdown-item" href="#">This Year</a></li>
-                                    </ul>
                                 </div>
                             </div>
                             <div class="card-body">
@@ -185,59 +172,8 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-12 col-xl-6">
-                        <div class="card" data-aos="fade-up" data-aos-delay="900">
-                            <div class="flex-wrap card-header d-flex justify-content-between">
-                                <div class="header-title">
-                                    <h4 class="card-title">Earnings</h4>
-                                </div>
-                                <div class="dropdown">
-                                    <a href="#" class="text-gray dropdown-toggle" id="dropdownMenuButton1"
-                                        data-bs-toggle="dropdown" aria-expanded="false">
-                                        This Week
-                                    </a>
-                                    <ul class="dropdown-menu dropdown-menu-end"
-                                        aria-labelledby="dropdownMenuButton1">
-                                        <li><a class="dropdown-item" href="#">This Week</a></li>
-                                        <li><a class="dropdown-item" href="#">This Month</a></li>
-                                        <li><a class="dropdown-item" href="#">This Year</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="card-body">
-                                <div class="flex-wrap d-flex align-items-center justify-content-between">
-                                    <div id="myChart" class="col-md-8 col-lg-8 myChart"></div>
-                                    <div class="d-grid gap col-md-4 col-lg-4">
-                                        <div class="d-flex align-items-start">
-                                            <svg class="mt-2 icon-14" xmlns="http://www.w3.org/2000/svg" width="14"
-                                                viewBox="0 0 24 24" fill="#3a57e8">
-                                                <g>
-                                                    <circle cx="12" cy="12" r="8" fill="#3a57e8"></circle>
-                                                </g>
-                                            </svg>
-                                            <div class="ms-3">
-                                                <span class="text-gray">Fashion</span>
-                                                <h6>251K</h6>
-                                            </div>
-                                        </div>
-                                        <div class="d-flex align-items-start">
-                                            <svg class="mt-2 icon-14" xmlns="http://www.w3.org/2000/svg" width="14"
-                                                viewBox="0 0 24 24" fill="#4bc7d2">
-                                                <g>
-                                                    <circle cx="12" cy="12" r="8" fill="#4bc7d2"></circle>
-                                                </g>
-                                            </svg>
-                                            <div class="ms-3">
-                                                <span class="text-gray">Accessories</span>
-                                                <h6>176K</h6>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-12 col-xl-6">
+                    
+                    <div class="col-md-12 col-xl-12">
                         <div class="card" data-aos="fade-up" data-aos-delay="1000">
                             <div class="flex-wrap card-header d-flex justify-content-between">
                                 <div class="header-title">
@@ -462,7 +398,7 @@
                                 <div class="p-4 border border-white rounded primary-gradient-card">
                                     <div class="d-flex justify-content-between align-items-center">
                                         <div>
-                                            <h5 class="font-weight-bold">ANGGOTA </h5>
+                                            <h5 class="font-weight-bold">REWARD </h5>
                                             <P class="mb-0">SALDO TERBANYAK</P>
                                         </div>
                                         <div class="master-card-content">
@@ -478,10 +414,10 @@
                                     </div>
                                     <div class="my-4">
                                         <div class="card-number">
-                                            <span class="fs-5 me-2">5789</span>
+                                            <span class="fs-5 me-2">{{ !empty($arrData['reward']) ? substr($arrData['reward']['msa_norek'],0,4) : '****' }}</span>
                                             <span class="fs-5 me-2">****</span>
                                             <span class="fs-5 me-2">****</span>
-                                            <span class="fs-5">2847</span>
+                                            <span class="fs-5">{{ !empty($arrData['reward']) ? substr($arrData['reward']['msa_norek'],-4) : '****' }}</span>
                                         </div>
                                     </div>
                                     <div class="mb-2 d-flex align-items-center justify-content-between">
@@ -489,7 +425,7 @@
                                         <p class="mb-0">Sampai Saat Ini</p>
                                     </div>
                                     <div class="d-flex align-items-center justify-content-between">
-                                        <h6>... ... ... ...</h6>
+                                        <h6>{{ !empty($arrData['reward']) ? $arrData['reward']['msa_name'] : '.... .... ....' }}</h6>
                                         <h6 class="ms-5">{{ date('d.m.y') }}</h6>
                                     </div>
                                 </div>
@@ -508,7 +444,7 @@
                                             </div>
                                         </div>
                                         <div class="ms-3">
-                                            <h5>1153</h5>
+                                            <h5>{{ !empty($arrData['reward']) ? round($arrData['reward']['total_kategori'],2) : '0' }} Jenis</h5>
                                             <small class="mb-0">Total Jenis</small>
                                         </div>
                                     </div>
@@ -524,14 +460,14 @@
                                             </div>
                                         </div>
                                         <div class="ms-3">
-                                            <h5>81K</h5>
+                                            <h5>{{ !empty($arrData['reward']) ? round($arrData['reward']['total_berat_kg'],2) : '0 Kg' }}</h5>
                                             <small class="mb-0">Total Berat</small>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="mb-4">
                                     <div class="flex-wrap d-flex justify-content-between">
-                                        <h2 class="mb-2">$405,012,300</h2>
+                                        <h2 class="mb-2">{{ !empty($arrData['reward']) ? rupiah($arrData['reward']['saldo']) : 'Rp. 0' }}</h2>
                                     </div>
                                 </div>
                             </div>

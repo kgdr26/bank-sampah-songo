@@ -13,6 +13,9 @@ class Dasbor extends Controller
 
     public function index()
     {
+
+        $data['arrData']    = MDasbor::getDataDashbard();
+
         // include css yang di perlukan
         $data['css'] = [
             
@@ -20,10 +23,24 @@ class Dasbor extends Controller
 
         // include js yang di perlukan
         $data['js'] = [
-            
+            asset('assets/main-js/dasbor/dasbor.js'),
         ];
 
         return view('Dashbor.dasbor', $data);
+    }
+
+    // function list data
+    public function listData(Request $request)
+    {
+        $typeData = $request->input('type_data');
+
+        if($typeData == 'chartBeratSetorDanJual'){
+            $result = MDasbor::getchartBeratSetorDanJual($request);
+        }else{
+            $result = [];
+        }
+
+        return response()->json($result);
     }
 
 }

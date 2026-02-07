@@ -100,7 +100,7 @@
                             <p>Kalau bukan kita, siapa lagi? Kalau bukan sekarang, kapan lagi?</p>
                         </div>
                         <div>
-                            <a href="" class="btn btn-link btn-soft-light">
+                            <a href="javascript:void(0)" class="btn btn-link btn-soft-light" onclick="showLoader()">
                                 <svg class="icon-20" width="20" viewBox="0 0 24 24" fill="none"
                                     xmlns="http://www.w3.org/2000/svg">
                                     <path
